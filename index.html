@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherMatic</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto:ital,wght@0,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<div class="container">
+    <header>
+        <h1 class="head">WeatherMatic</h1>
+        <form class="d-flex justify-content-center" role="search">
+            <input class="search-box me-3 w-100 mt-3" type="search" placeholder="Search for a City" aria-label="Search"
+                autocomplete="off" id="inputname">
+                <button type="button" class="btn btn-primary w-25 mt-3" onClick="search()">search</button>
+        </form>
+    </header>
+    <content>
+        <body class="para">
+            <div class="content ">
+                <section class="location">
+                    <div class="wheather-img" id="icon"><img src="" alt=""></div>
+                    <div class="date"></div>
+                </section>
+                <div class="current">
+                    <div class="temp" id="temp"></div>
+                    <div class="place">
+                        <p class="city" id="city"></p>
+                        <p class="country" id="country"></p>
+                    </div>
+                    <div class="wheather" id="wheather"></div>
+                    <div class="high-low">
+                        <i id="high"></i>
+                        <i" id="low"></i>
+                    </div>
+    </content>
+    <div class="other">
+        <div class="wind-img">
+            <h3 class="units" id="wind"></h3>
+        </div>
+        <div class="humidity-img">
+            <h3 class="units" id="hum"></h3>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+<script>
+    const search = async () => {
+        let CityName = inputname.value
+        if (CityName) {
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CityName}&appid=3f216cfd12c6efc45088d4cf7831538e&units=metric`)
+            if (res.status == 404) {
+                alert('invalid')
+            }
+            else {
+                res.json()
+                    .then((City) => {
+                        console.log(City);
+                        Name = City.name
+                        city.innerHTML = Name
+                        Country = City.sys.country
+                        country.innerHTML = Country
+                        Temp = City.main.temp
+                        temp.innerHTML = (Math.round(Temp) + '°C')
+                        Max = City.main.temp_max
+                        high.innerHTML = (Math.round(Max) + '°C Max')
+                        Min = City.main.temp_min
+                        low.innerHTML = ((Math.round(Min)) + '°C Min')
+                        Pressure = City.main.pressure
+                        Humidity = City.main.humidity
+                        Wind = City.wind.speed
+
+                        let c = new Date();
+                        var date = document.querySelector('.location .date');
+                        date.innerText = dateBuilder(c);
+
+                        function dateBuilder(e) {
+                            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                            let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            let day = days[e.getDay()];
+                            date = e.getDate();
+                            let month = months[e.getMonth()];
+                            let year = e.getFullYear();
+                            return `${day} ${date} ${month} ${year}`
+                        }
+                        wind.innerHTML = ` <div class="wind-img"><img src="./image/wind.png" width="80px" height="80px" alt="">
+            <h3 class="units" id="wind">${Wind} KpH</h3>`
+                        hum.innerHTML = `<div class="humidity-img"><img src="./image/humidity.png " width="60px" height="80px">
+            <h3 class="units" id="hum">${Humidity}%</h3>`
+                        Weather = City.weather[0].main
+                        wheather.innerHTML = Weather
+                        if (City.weather[0].main == "Clear") {
+                            icon.innerHTML = `<img src="./image/clear.png"width="100px" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Clouds") {
+                            icon.innerHTML = `<img src="./image/clear.png"width="100px" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Drizzle") {
+                            icon.innerHTML = `<img src="./image/rain.png"width="100px" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Mist") {
+                            icon.innerHTML = `<img src="./image/snow.png"width="100px" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Rain") {
+                            icon.innerHTML = `<img src="./image/rain.png" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Snow") {
+                            icon.innerHTML = `<img src="./image/snow.png"width="100px" height="100px">`
+                        }
+                        else if (City.weather[0].main == "Smoke") {
+                            icon.innerHTML = `<img src="./image/mist.png"width="100px" height="100px">`
+                        }
+                    })
+            }
+        }
+        else {
+            alert("Please Enter A City")
+        }
+    }
+</script>
+
+</html>

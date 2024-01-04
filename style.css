@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0px;
+
+}
+
+body {
+    background-image:url(./image/background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 110vh;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    padding: 50px 15px 15px;
+}
+
+.head {
+    color: rgb(246, 248, 248);
+}
+
+.search-box {
+    max-width: 600px;
+    padding: 8px 10px 10px 8px;
+    background-color: #2610f1;
+    border-radius: 20px;
+    color: #f4efef;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    transition: 0.1s ease-out;
+}
+
+.search-box:hover {
+    background-color: rgba(8, 48, 194, 0.6);
+}
+
+.btn{
+    border: none;
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.content {
+    flex: 100%;
+    padding: 25px 25px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.city {
+    color:  #f5eaea;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.country {
+    color:  #f5eaea;
+    font-size: 48px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.location .date {
+    color:  #f5eaea;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+.current .temp {
+    color:  #f5eaea;
+    font-size: 50px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+
+.current .wheather-img img{
+    width: 100%;
+    height: 100px;
+    margin-top: 5px;
+}
+.current .wheather {
+    color:  #f5eaea;
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 20px
+}
+
+#high {
+    color:  #f5eaea;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+#low {
+    color:  #f5eaea;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.other {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.units {
+    color: #f5eaea;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.para {
+    color: #f5eaea;
+    text-align: center;
+    font-size: 20px;
+}
+
+.wind-img {
+    margin-top: 5px;
+}
+
+.humidity-img {
+    margin-top: 5px;
+}
